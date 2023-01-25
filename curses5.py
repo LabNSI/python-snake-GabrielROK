@@ -99,7 +99,7 @@ def jeu(win):
 	curses.beep()
 
 	# tant que pas Escape ou pas end
-	while key != 27 and  not  end:
+	while key != 27  and not end:
 
 		key = controle(win, key)
 		snake, score = deplacement(win, score, key, snake, food)
@@ -146,7 +146,7 @@ def deplacement(win, score, key, snake, food):
 		 snake[0][0] = win.getmaxyx()[0]-2
 
 	if snake[0][1] == 0:
-		snake[0][1] = win.getmaxyx()[1]-2
+		snake[0][1]= win.getmaxyx()[1]-2
 
 	if snake[0][0] == win.getmaxyx()[0]-1:
 		 snake[0][0] = 1
@@ -214,7 +214,7 @@ def mange_pomme(win, food, snake, score):
 			# dans les limite de la fenêtre
 			# voir la documentation de la fonction window.getmaxyx()
 			food[0] = randint(1, win.getmaxyx()[0]-2)
-			food[1] = randint(1, win.getmaxyx()[0]-2)
+			food[1] = randint(1,  win.getmaxyx()[0]-2)
 
 		# Affichage de la pomme aux nouvelles coordonnées en vert sur fond noir
 		win.addch(food[0], food[1], chr(211), curses.color_pair(2))
@@ -242,11 +242,11 @@ def perdu(win, snake):
 	end = False
 
 	# Si la tête du serpent est dans le corps
-	if snake[0] in snake[1: ] :
+	if snake[0] in snake[1:] :
 
 		# Afiicher "GAME OVER !" en blanc sur fond rouge au milieu de la fenêtre
 		curses.init_pair(4, curses.COLOR_WHITE, curses.COLOR_RED)
-		win.addstr(win.getmaxyx()[0]//2, win.getmaxyx()[1]//2-5, "GAME OVER !", 4)
+		win.addstr(win.getmaxyx()[0]//2, win.getmaxyx()[1]//2-5, "GAME OVER !", curses.color_pair(4))
 		win.refresh()
 
 		# Emission d'une série de beep.
